@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   triton-server:
     image: nvcr.io/nvidia/tritonserver:22.12-py3
