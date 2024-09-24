@@ -1,5 +1,4 @@
 import time
-import numpy as np
 from concurrent.futures import ThreadPoolExecutor
 import torch
 import torchaudio

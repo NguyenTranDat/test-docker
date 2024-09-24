@@ -1,0 +1,32 @@
+name: "wav2vec_process"
+backend: "python"
+
+input [
+  {
+    name: "waveform"
+    data_type: TYPE_FP32 
+    dims: [1, -1]
+  }
+]
+
+input [
+  {
+    name: "sample_rate"
+    data_type: TYPE_FP32 
+    dims: [-1]
+  }
+]
+
+output [
+  {
+    name: "output"
+    data_type: TYPE_FP32
+    dims: [49,768 ]
+  }
+]
+
+instance_group [
+  {
+    kind: KIND_CPU
+  }
+]
