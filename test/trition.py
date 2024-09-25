@@ -34,10 +34,7 @@ def run_inference(file_path):
             httpclient.InferRequestedOutput("output"),
         ]
 
-        response = client.infer(model_name,
-                                 inputs,
-                                 request_id=str(1),
-                                 outputs=outputs)
+        response = client.infer(model_name, inputs, request_id=str(1), outputs=outputs)
 
         result = response.get_response()
         output_data = response.as_numpy("output")
