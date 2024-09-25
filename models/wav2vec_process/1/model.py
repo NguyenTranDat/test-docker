@@ -1,3 +1,4 @@
+import time
 import json
 import torch
 import requests
@@ -58,6 +59,9 @@ class TritonPythonModel:
         }
 
         headers = {"Content-Type": "application/json"}
+
+        # time.sleep(0.5)
+
         response = requests.post(self.TRITON_SERVER_URL, json=data, headers=headers)
         if response.status_code == 200:
             return response.json()

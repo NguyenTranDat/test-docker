@@ -31,10 +31,10 @@ def preprocess_audio(file_path: str):
     return output
 
 file_paths = [
-    '/home/trandat/test_docker/data/dia0_utt0.wav',
-    '/home/trandat/test_docker/data/dia0_utt1.wav',
-    '/home/trandat/test_docker/data/dia0_utt2.wav',
-    '/home/trandat/test_docker/data/dia0_utt3.wav'
+    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt0.wav',
+    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt1.wav',
+    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt2.wav',
+    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt3.wav'
 ]
 
 def process_files_concurrently(file_paths):

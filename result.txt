@@ -1,0 +1,7 @@
+Kết quả mỗi lần test(model onnx)
+
+STT,     python,      triton(delay 2ns),
+1,        4.24s,         1.12s,
+2,        4.59s,         1.16s,
+3,        4.27s,         1.03s,
+
