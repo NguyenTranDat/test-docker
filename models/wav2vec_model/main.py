@@ -10,7 +10,7 @@ dummy_input = torch.randn(1, 16000)
 torch.onnx.export(
     model,
     dummy_input,
-    "/home/admin123/Documents/test-docker/models/wav2vec_model/1/model.onnx",
+    "/home/trandat/Documents/vnpt/test-docker/models/wav2vec_model/1/model.onnx",
     input_names=["input"], 
     output_names=["output"],
     export_params=True,

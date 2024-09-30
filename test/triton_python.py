@@ -1,6 +1,5 @@
 import numpy as np
 import requests
-import json
 import torch
 from pydub import AudioSegment
 
@@ -56,10 +55,10 @@ def preprocess_audio(file_path: str):
 
 if __name__ == '__main__':
     file_paths = [
-        '/home/admin123/Documents/test-docker/data/dia0_utt0.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt1.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt2.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt3.wav'
+        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt0.wav',
+        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt1.wav',
+        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt2.wav',
+        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt3.wav'
     ]
 
     for file_path in file_paths:
