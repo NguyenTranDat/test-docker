@@ -44,10 +44,10 @@ def run_inference(file_path):
 
 def run():
     file_paths = [
-        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt0.wav',
-        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt1.wav',
-        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt2.wav',
-        '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt3.wav'
+        '/home/admin123/Documents/test-docker/data/dia0_utt0.wav',
+        '/home/admin123/Documents/test-docker/data/dia0_utt1.wav',
+        '/home/admin123/Documents/test-docker/data/dia0_utt2.wav',
+        '/home/admin123/Documents/test-docker/data/dia0_utt3.wav'
     ]
 
     threads = []

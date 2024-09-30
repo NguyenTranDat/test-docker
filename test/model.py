@@ -18,6 +18,8 @@ def preprocess_audio(file_path: str):
         resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=16000)
         waveform = resample_transform(waveform)
 
+    breakpoint()
+
     waveform = waveform[:, :16000]
 
     input_values = processor(waveform.squeeze().numpy(), return_tensors="pt", sampling_rate=16000).input_values
@@ -31,10 +33,10 @@ def preprocess_audio(file_path: str):
     return output
 
 file_paths = [
-    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt0.wav',
-    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt1.wav',
-    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt2.wav',
-    '/home/trandat/Documents/vnpt/test-docker/data/dia0_utt3.wav'
+    '/home/admin123/Documents/test-docker/data/dia0_utt0.wav',
+    '/home/admin123/Documents/test-docker/data/dia0_utt1.wav',
+    '/home/admin123/Documents/test-docker/data/dia0_utt2.wav',
+    '/home/admin123/Documents/test-docker/data/dia0_utt3.wav'
 ]
 
 def process_files_concurrently(file_paths):
