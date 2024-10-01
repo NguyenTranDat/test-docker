@@ -1,3 +1,4 @@
+import os
 import torch
 from transformers import Wav2Vec2Model
 
@@ -7,10 +8,14 @@ model.eval()
 
 dummy_input = torch.randn(1, 16000)
 
+output_dir = "./models/wav2vec_model/1"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 torch.onnx.export(
     model,
     dummy_input,
-    "/home/trandat/Documents/vnpt/test-docker/models/wav2vec_model/1/model.onnx",
+    os.path.join(output_dir, "model.onnx"),
     input_names=["input"], 
     output_names=["output"],
     export_params=True,
