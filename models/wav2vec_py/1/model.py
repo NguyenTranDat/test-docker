@@ -55,8 +55,6 @@ class TritonPythonModel:
             sampling_rate=self.sample_rate
         ).input_values
 
-        print(input_values.shape)
-
         return input_values
     
     def finalize(self):

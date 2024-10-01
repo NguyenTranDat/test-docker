@@ -8,17 +8,13 @@ import time
 
 model_name = "wav2vec_process"
 
-def preprocess_audio(file_path: str):
-    audio = AudioSegment.from_wav(file_path)
-    samples = audio.get_array_of_samples()
-    waveform = torch.tensor(samples).float().unsqueeze(0)  
-    sample_rate = audio.frame_rate
-
-    return waveform, sample_rate
-
 def run_inference(file_path):
     with httpclient.InferenceServerClient("localhost:8000") as client:
-        waveform, sample_rate = preprocess_audio(file_path)
+        audio = AudioSegment.from_wav(file_path)
+        samples = audio.get_array_of_samples()
+        waveform = torch.tensor(samples).float().unsqueeze(0)  
+        sample_rate = audio.frame_rate
+
         waveform = waveform.numpy()
         sample_rate = np.array([sample_rate], dtype=np.float32)
 
@@ -44,10 +40,10 @@ def run_inference(file_path):
 
 def run():
     file_paths = [
-        '/home/admin123/Documents/test-docker/data/dia0_utt0.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt1.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt2.wav',
-        '/home/admin123/Documents/test-docker/data/dia0_utt3.wav'
+        './data/dia0_utt0.wav',
+        './data/dia0_utt1.wav',
+        './data/dia0_utt2.wav',
+        './data/dia0_utt3.wav'
     ]
 
     threads = []
