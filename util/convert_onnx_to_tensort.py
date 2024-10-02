@@ -24,7 +24,7 @@ profile.set_shape("input_name", (1, 3, 224, 224), (1, 3, 224, 224), (1, 3, 224, 
 
 
 config = builder.create_builder_config()
-config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, 1 << 30)  # 1GB
+config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, 1 << 30)
 config.add_optimization_profile(profile)
 serialized_engine = builder.build_serialized_network(network, config)
 

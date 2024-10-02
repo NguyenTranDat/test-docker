@@ -1,9 +1,11 @@
 import time
-import threading
+import os
+import concurrent.futures
 import torch
 from transformers import Wav2Vec2Model, Wav2Vec2Processor
 import torchaudio
 from pydub import AudioSegment
+import pandas as pd
 
 
 def preprocess_audio(file_path: str):
@@ -25,30 +27,38 @@ def preprocess_audio(file_path: str):
     with torch.no_grad():
         output = model(features).last_hidden_state
 
-    print(output, output.shape)
+    # print(output, output.shape)
 
     return output
 
 
-def process_files_concurrently():
-    file_paths = [
-        './data/dia0_utt0.wav',
-        './data/dia0_utt1.wav',
-        './data/dia0_utt2.wav',
-        './data/dia0_utt3.wav'
-    ]
+if __name__ == '__main__':
+    folder_data_path = './data'
+    csv_output="./result/model.csv"
+    max_workers = 4
     start_time = time.time()
+    processing_times = []
+    file_counts = []
 
-    threads = []
-    for file_path in file_paths:
-        thread = threading.Thread(target=preprocess_audio, args=(file_path,))
-        threads.append(thread)
-        thread.start()
+    file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
-    for thread in threads:
-        thread.join()
-    
-    end_time = time.time()
-    print(f"Total time for concurrent execution: {end_time - start_time:.2f} seconds")
+    for i in range(1,33):
+        start_time = time.time()
 
-process_files_concurrently()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            executor.map(preprocess_audio, file_paths[0:i])
+
+        end_time = time.time()
+
+        processing_times.append(end_time-start_time)
+        file_counts.append(i) 
+
+    df = pd.DataFrame({
+        "File Count": file_counts,
+        "Time (seconds)": processing_times,
+    })
+    df.to_csv(csv_output, index=False)
+
+    print("DONE!")
+
+    # print(f"Total time taken: {end_time - start_time:.2f} seconds")

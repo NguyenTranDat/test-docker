@@ -1,11 +1,12 @@
 import numpy as np
-import requests
+import concurrent.futures
 from tritonclient.utils import *
 import tritonclient.http as httpclient
 import torch
 import time
-import threading
+import os
 from pydub import AudioSegment
+import pandas as pd
 
 
 MODEL_NAME = 'wav2vec_py'
@@ -73,28 +74,34 @@ def infer(file_path):
         # result = response.get_response()
         output_data = response.as_numpy("output")
 
-        print(output_data)
+        # print(output_data)
 
 
 if __name__ == '__main__':
-    file_paths = [
-        './data/dia0_utt0.wav',
-        './data/dia0_utt1.wav',
-        './data/dia0_utt2.wav',
-        './data/dia0_utt3.wav'
-    ]
+    folder_data_path = './data'
+    csv_output="./result/triton_python.csv"
+    max_workers = 4
+    processing_times = []
+    file_counts = []
 
-    threads = []
-    start_time = time.time()
+    file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
-    for file_path in file_paths:
-        thread = threading.Thread(target=infer, args=(file_path,))
-        threads.append(thread)
-        thread.start()
+    for i in range(1,33):
+        start_time = time.time()
 
-    for thread in threads:
-        thread.join()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            executor.map(infer, file_paths[0:i])
 
-    end_time = time.time()
+        end_time = time.time()
 
-    print(f"Total time taken: {end_time - start_time:.2f} seconds")
+        processing_times.append(end_time-start_time)
+        file_counts.append(i) 
+
+    df = pd.DataFrame({
+        "File Count": file_counts,
+        "Time (seconds)": processing_times,
+    })
+    df.to_csv(csv_output, index=False)
+
+    print("DONE!")
+

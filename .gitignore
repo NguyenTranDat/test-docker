@@ -2,3 +2,10 @@
 *.wav
 
 */__pycache__/
+
+
+/MELD/
+
+*.mp4
+*.wav
+*.tar.gz
