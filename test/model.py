@@ -36,13 +36,12 @@ if __name__ == '__main__':
     folder_data_path = './data'
     csv_output="./result/model.csv"
     max_workers = 4
-    start_time = time.time()
     processing_times = []
     file_counts = []
 
     file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
-    for i in range(1,33):
+    for i in range(1, 33):
         start_time = time.time()
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -52,6 +51,7 @@ if __name__ == '__main__':
 
         processing_times.append(end_time-start_time)
         file_counts.append(i) 
+        print(i, end_time-start_time)
 
     df = pd.DataFrame({
         "File Count": file_counts,

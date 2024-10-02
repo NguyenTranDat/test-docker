@@ -65,6 +65,7 @@ def process_files_concurrently():
         end_time = time.time()
         processing_times.append(end_time-start_time)
         file_counts.append(i) 
+        print(i, end_time-start_time)
 
     csv_output="./result/model2.csv"
 

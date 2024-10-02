@@ -96,6 +96,7 @@ if __name__ == '__main__':
 
         processing_times.append(end_time-start_time)
         file_counts.append(i) 
+        print(i, end_time-start_time)
 
     df = pd.DataFrame({
         "File Count": file_counts,
