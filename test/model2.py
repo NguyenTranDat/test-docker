@@ -23,6 +23,9 @@ def preprocess(file_path: str):
 
     features = processor(waveform.squeeze().numpy(), return_tensors="pt", sampling_rate=16000).input_values
 
+    del audio, samples, waveform, samples
+    torch.cuda.empty_cache()
+
     return features
 
 
@@ -36,7 +39,6 @@ def process_files_concurrently():
     folder_data_path = './data'
     max_threads = 4
     processing_times = []
-    file_counts = []
 
     file_paths = [os.path.join(folder_data_path, file) for file in os.listdir(folder_data_path) if file.endswith('.wav')]
 
@@ -56,21 +58,15 @@ def process_files_concurrently():
 
             batched_input_values = pad_tensors(input_values_list)
 
-            with torch.no_grad():
-                output = model(batched_input_values).last_hidden_state
-
-            # print(f"Processed batch of size {len(batch)}:")
-            # print(output, output.shape)
+            model(batched_input_values).last_hidden_state
 
         end_time = time.time()
         processing_times.append(end_time-start_time)
-        file_counts.append(i) 
         print(i, end_time-start_time)
 
     csv_output="./result/model2.csv"
 
     df = pd.DataFrame({
-        "File Count": file_counts,
         "Time (seconds)": processing_times,
     })
     df.to_csv(csv_output, index=False)
