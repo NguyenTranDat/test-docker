@@ -27,9 +27,12 @@ def preprocess_audio(file_path: str):
     with torch.no_grad():
         output = model(features).last_hidden_state
 
+    del audio, samples, waveform, features, output
+    torch.cuda.empty_cache()
+
     # print(output, output.shape)
 
-    return output
+    # return output
 
 
 if __name__ == '__main__':
@@ -37,7 +40,6 @@ if __name__ == '__main__':
     csv_output="./result/model.csv"
     max_workers = 4
     processing_times = []
-    file_counts = []
 
     file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
@@ -50,11 +52,9 @@ if __name__ == '__main__':
         end_time = time.time()
 
         processing_times.append(end_time-start_time)
-        file_counts.append(i) 
         print(i, end_time-start_time)
 
     df = pd.DataFrame({
-        "File Count": file_counts,
         "Time (seconds)": processing_times,
     })
     df.to_csv(csv_output, index=False)

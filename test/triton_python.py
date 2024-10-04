@@ -74,7 +74,8 @@ def infer(file_path):
         # result = response.get_response()
         output_data = response.as_numpy("output")
 
-        # print(output_data)
+        del output_data, audio, samples, waveform, response
+        torch.cuda.empty_cache()
 
 
 if __name__ == '__main__':
@@ -82,7 +83,6 @@ if __name__ == '__main__':
     csv_output="./result/triton_python.csv"
     max_workers = 4
     processing_times = []
-    file_counts = []
 
     file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
@@ -95,11 +95,9 @@ if __name__ == '__main__':
         end_time = time.time()
 
         processing_times.append(end_time-start_time)
-        file_counts.append(i) 
         print(i, end_time-start_time)
 
     df = pd.DataFrame({
-        "File Count": file_counts,
         "Time (seconds)": processing_times,
     })
     df.to_csv(csv_output, index=False)
