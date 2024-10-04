@@ -40,13 +40,14 @@ def process_files_concurrently():
 
     file_paths = [os.path.join(folder_data_path, file) for file in os.listdir(folder_data_path) if file.endswith('.wav')]
 
+    model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
+    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
+
     for i in range(1,33):
         start_time = time.time()
         split_file_paths = file_paths[1:i]
 
         batches = [split_file_paths[i:i + max_threads] for i in range(0, len(split_file_paths), max_threads)]
-        
-        model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
 
         for batch in batches:
             input_values_list = []
