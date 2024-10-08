@@ -5,14 +5,15 @@ input [
   {
     name: "input"
     data_type: TYPE_FP32
-    dims: [ 16000 ]
+    dims: [ -1 ]
   }
 ]
+
 output [
   {
     name: "output"
     data_type: TYPE_FP32
-    dims: [ 49,768 ]
+    dims: [ -1,768 ]
   }
 ]
 
@@ -20,3 +21,10 @@ dynamic_batching {
   preferred_batch_size: [ 4, 8, 16 ] 
   max_queue_delay_microseconds: 2000
 }
+
+instance_group [
+  {
+    kind: KIND_GPU
+  }
+]
+

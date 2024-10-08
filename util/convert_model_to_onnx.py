@@ -16,11 +16,11 @@ torch.onnx.export(
     model,
     dummy_input,
     os.path.join(output_dir, "model.onnx"),
-    input_names=["input"], 
+    input_names=["input"],
     output_names=["output"],
     export_params=True,
     opset_version=14,
-    dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}}
+    dynamic_axes={"input": {0: "batch_size", 1: "sequence_length"}, "output": {0: "batch_size", 1: "sequence_length"}}
 )
 
 print("Model exported to ONNX format.")

@@ -73,8 +73,6 @@ class TritonPythonModel:
             resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
             waveform = resample_transform(waveform)
 
-        waveform = waveform[:, :self.sample_rate]
-
         input_values = self.processor(waveform.squeeze().numpy(), return_tensors="pt", sampling_rate=self.sample_rate).input_values
 
         return input_values

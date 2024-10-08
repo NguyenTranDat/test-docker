@@ -30,14 +30,12 @@ output [
 
 instance_group [
   {
-    kind: KIND_CPU
+    kind: KIND_GPU
   }
 ]
 
 dynamic_batching {
-  preferred_batch_size: [4, 8, 16]
-  max_queue_delay_microseconds: 2000
-  preserve_ordering: true
+
 }
 
 batch_input [
