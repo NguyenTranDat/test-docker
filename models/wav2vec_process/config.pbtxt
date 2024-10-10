@@ -1,11 +1,12 @@
 name: "wav2vec_process"
 backend: "python"
+max_batch_size: 16
 
 input [
   {
     name: "waveform"
-    data_type: TYPE_FP32 
-    dims: [1, -1]
+    data_type: TYPE_FP32
+    dims: [-1]
   }
 ]
 
@@ -30,3 +31,7 @@ instance_group [
     kind: KIND_GPU
   }
 ]
+
+dynamic_batching {
+
+}

@@ -7,7 +7,6 @@ input [
     name: "waveform"
     data_type: TYPE_FP32
     dims: [-1]
-    allow_ragged_batch: true
   }
 ]
 
@@ -16,7 +15,6 @@ input [
     name: "sample_rate"
     data_type: TYPE_FP32
     dims: [-1]
-    allow_ragged_batch: true
   }
 ]
 
@@ -37,12 +35,3 @@ instance_group [
 dynamic_batching {
 
 }
-
-batch_input [
-  {
-    kind: BATCH_ACCUMULATED_ELEMENT_COUNT
-    target_name: "waveform"
-    data_type: TYPE_FP32
-    source_input: "waveform"
-  }
-]
