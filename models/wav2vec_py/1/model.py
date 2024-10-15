@@ -22,6 +22,7 @@ class TritonPythonModel:
 
     def execute(self, requests):
         responses = []
+        # print(len(requests))
         for request in requests:
             waveform = pb_utils.get_input_tensor_by_name(request, "waveform")
             sample_rate = pb_utils.get_input_tensor_by_name(request, "sample_rate")
@@ -42,12 +43,12 @@ class TritonPythonModel:
             inference_response = pb_utils.InferenceResponse([output])
             responses.append(inference_response)
 
-        return responses 
+        return responses
     
     def process_audio(self, waveform, sample_rate):
-        if sample_rate != self.sample_rate:
-            resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
-            waveform = resample_transform(waveform)
+        # if sample_rate != self.sample_rate:
+        #     resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
+        #     waveform = resample_transform(waveform)
 
         input_values = self.processor(
             waveform.squeeze().numpy(),

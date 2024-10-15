@@ -69,9 +69,9 @@ class TritonPythonModel:
             return response.raise_for_status()
     
     def process_audio(self, waveform, sample_rate):
-        if sample_rate != self.sample_rate:
-            resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
-            waveform = resample_transform(waveform)
+        # if sample_rate != self.sample_rate:
+        #     resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
+        #     waveform = resample_transform(waveform)
 
         input_values = self.processor(waveform.squeeze().numpy(), return_tensors="pt", sampling_rate=self.sample_rate).input_values
 

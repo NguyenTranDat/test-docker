@@ -1,6 +1,7 @@
 
-FROM nvcr.io/nvidia/tritonserver:23.09-py3
+FROM nvcr.io/nvidia/tritonserver:23.10-py3
 
+RUN python3 -m pip install --upgrade pip
 RUN pip install torch 
 RUN pip install transformers 
 RUN pip install numpy 
@@ -15,4 +16,4 @@ RUN cd python_backend
 
 COPY ./models /models
 
-CMD ["tritonserver", "--model-repository=/models"]
+CMD ["tritonserver", "--model-repository=/models", "--log-verbose=2"]   
