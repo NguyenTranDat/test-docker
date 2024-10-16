@@ -22,7 +22,7 @@ class TritonPythonModel:
 
     def execute(self, requests):
         responses = []
-        # print(len(requests))
+        print(len(requests))
         for request in requests:
             waveform = pb_utils.get_input_tensor_by_name(request, "waveform")
             sample_rate = pb_utils.get_input_tensor_by_name(request, "sample_rate")

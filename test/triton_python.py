@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
-    for i in range(1,33):
+    for i in range(1, 4):
         start_time = time.time()
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
