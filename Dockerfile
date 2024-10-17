@@ -15,7 +15,7 @@ RUN cd python_backend
 
 COPY ./models /models
 
-# CMD ["tritonserver", "--model-repository=/models"]   
-# CMD ["tritonserver", "--model-repository=/models", "--cache-config=local,size=1000048576", "--log-verbose=2"]   
-CMD ["tritonserver", "--model-repository=/models", "--log-format=default", "--log-file=/opt/tritonserver/logfile.log"]   
+# CMD ["tritonserver", "--model-repository=/models"] 
+CMD ["tritonserver", "--model-repository=/models", "--cache-config=local,size=1000048576", "--log-verbose=2"]   
+# CMD ["tritonserver", "--model-repository=/models", "--log-format=default", "--log-file=/opt/tritonserver/logfile.log"]   
 # CMD ["tritonserver", "--model-repository=/models", "--log-verbose=2"]   

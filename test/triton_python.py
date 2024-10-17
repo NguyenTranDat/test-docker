@@ -1,12 +1,12 @@
 import numpy as np
-import concurrent.futures
-from tritonclient.utils import *
-import tritonclient.http as httpclient
-import torch
+import threading
 import time
 import os
 from pydub import AudioSegment
 import pandas as pd
+import torch
+import tritonclient.http as httpclient
+from tritonclient.utils import *
 
 
 MODEL_NAME = 'wav2vec_py'
@@ -38,16 +38,6 @@ def prepare_input(waveform, sample_rate):
 
 
 def infer(file_path):
-    # inputs = prepare_input(waveform, sample_rate)
-    
-    # response = requests.post(TRITON_SERVER_URL, json=inputs)
-
-    # if response.status_code != 200:
-    #     raise Exception(f"Request failed with status code {response.status_code}: {response.text}")
-
-    # output_data = response.json()
-    # print(output_data['outputs'][0]['data'])
-
     with httpclient.InferenceServerClient("localhost:8000") as client:
         audio = AudioSegment.from_wav(file_path)
         samples = audio.get_array_of_samples()
@@ -71,31 +61,40 @@ def infer(file_path):
 
         response = client.infer(MODEL_NAME, inputs, request_id=str(1), outputs=outputs)
 
-        # result = response.get_response()
         output_data = response.as_numpy("output")
 
         del output_data, audio, samples, waveform, response
         torch.cuda.empty_cache()
 
 
+def run_inference_thread(file_path):
+    infer(file_path)
+
+
 if __name__ == '__main__':
     folder_data_path = './data'
-    csv_output="./result/triton_python.csv"
-    max_workers = 4
+    csv_output = "./result/triton_python.csv"
     processing_times = []
 
     file_paths = [os.path.join(folder_data_path, file_path) for file_path in os.listdir(folder_data_path) if file_path.endswith('.wav')]
 
-    for i in range(1, 4):
+    for i in range(1, 3):
         start_time = time.time()
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-            executor.map(infer, file_paths[0:i])
+        threads = []
+
+        for file_path in file_paths[0:i]:
+            thread = threading.Thread(target=run_inference_thread, args=(file_path,))
+            threads.append(thread)
+            thread.start()
+
+        for thread in threads:
+            thread.join()
 
         end_time = time.time()
 
-        processing_times.append(end_time-start_time)
-        print(i, end_time-start_time)
+        processing_times.append(end_time - start_time)
+        print(i, end_time - start_time)
 
     df = pd.DataFrame({
         "Time (seconds)": processing_times,
