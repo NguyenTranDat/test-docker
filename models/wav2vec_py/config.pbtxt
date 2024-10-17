@@ -43,3 +43,50 @@ dynamic_batching {
 response_cache {
   enable: true
 }
+
+model_warmup [
+  {
+    name: "warmup_example_1"
+    batch_size: 4
+    inputs [
+      {
+        key: "waveform"
+        value: {
+          data_type: TYPE_FP32
+          dims: [32000] 
+          zero_data: true
+        }
+      },
+      {
+        key: "sample_rate"
+        value: {
+          data_type: TYPE_FP32
+          dims: [1]
+          zero_data: true
+        }
+      }
+    ]
+  },
+  {
+    name: "warmup_example_2"
+    batch_size: 8
+    inputs [
+      {
+        key: "waveform"
+        value: {
+          data_type: TYPE_FP32
+          dims: [64000] 
+          zero_data: true
+        }
+      },
+      {
+        key: "sample_rate"
+        value: {
+          data_type: TYPE_FP32
+          dims: [1]
+          zero_data: true
+        }
+      }
+    ]
+  }
+]
