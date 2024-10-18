@@ -26,7 +26,7 @@
 
 + Tại sao dùng is_shape_tensor vẫn phải xác định dim?
 
-  - is_shape_tensor chỉ hỗ trợ trong lúc chạy mô hình. Có thêm shape giúp model dễ dàng hiểu hơn. Thay vì xử lý tổng quát như dim -1
+  - is_shape_tensor chỉ hỗ trợ trong lúc chạy mô hình. Có thêm shape giúp model dễ dàng hiểu hơn.
 
 + Chỉ hỗ trợ TensorRT
 
