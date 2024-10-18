@@ -102,32 +102,38 @@ Ví dụ model wav2vec_py:
 		{
 			"name":"wav2vec_py",
 			"version":"1",
-			"last_inference":1729175990604,
-			"inference_count":12,
-			"execution_count":2,
+			"last_inference":1729214568321,
+			"inference_count":14,
+			"execution_count":4,
 			"inference_stats":
 				{
-					"success":{"count":12,"ns":18881524207},
+					"success":{"count":15,"ns":61576194341},
 					"fail":{"count":0,"ns":0},
-					"queue":{"count":12,"ns":138585},
-					"compute_input":{"count":12,"ns":5296336},
-					"compute_infer":{"count":12,"ns":18866711192},
-					"compute_output":{"count":12,"ns":8127412},
-					"cache_hit":{"count":0,"ns":0},
-					"cache_miss":{"count":0,"ns":0}
+					"queue":{"count":15,"ns":2003079696},
+					"compute_input":{"count":14,"ns":66351273},
+					"compute_infer":{"count":14,"ns":59426678985},
+					"compute_output":{"count":14,"ns":54556011},
+					"cache_hit":{"count":1,"ns":2182761},
+					"cache_miss":{"count":2,"ns":21539021}
 				},
 			"batch_stats":[
 				{
+					"batch_size":1,
+					"compute_input":{"count":2,"ns":11365725},
+					"compute_infer":{"count":2,"ns":36823774049},
+					"compute_output":{"count":2,"ns":44281591}
+				},
+				{
 					"batch_size":4,
-					"compute_input":{"count":1,"ns":469864},
-					"compute_infer":{"count":1,"ns":616435628},
-					"compute_output":{"count":1,"ns":366943}
+					"compute_input":{"count":1,"ns":12783657},
+					"compute_infer":{"count":1,"ns":1403747336},
+					"compute_output":{"count":1,"ns":666949}
 				},
 				{
 					"batch_size":8,
-					"compute_input":{"count":1,"ns":427110},
-					"compute_infer":{"count":1,"ns":2050121085},
-					"compute_output":{"count":1,"ns":832455}
+					"compute_input":{"count":1,"ns":481365},
+					"compute_infer":{"count":1,"ns":2123489449},
+					"compute_output":{"count":1,"ns":950828}
 				}
 			],
 			"memory_usage":[]
