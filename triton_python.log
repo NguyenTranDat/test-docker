@@ -1,0 +1,1473 @@
+Running perf_analyzer with concurrency=1
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Using synchronous calls for inference
+
+Request concurrency: 1
+  Client: 
+    Request count: 62
+    Throughput: 0.861086 infer/sec
+    Avg latency: 1161348 usec (standard deviation 29351 usec)
+    p50 latency: 1148551 usec
+    p90 latency: 1198656 usec
+    p95 latency: 1235350 usec
+    p99 latency: 1256398 usec
+    Avg HTTP time: 1161311 usec (send/recv 257 usec + response wait 1161054 usec)
+  Server: 
+    Inference count: 62
+    Execution count: 62
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 62
+    Avg request latency: 1160679 usec (overhead 18 usec + queue 1000182 usec + cache hit/miss 160479 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 160479 usec (cache lookup/insertion 0 usec + compute input 53 usec + compute infer 160333 usec + compute output 92 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 1, throughput: 0.861086 infer/sec, latency 1161348 usec
+Logging stats after concurrency=1
+{
+	"model_stats":[
+		{
+			"name":"wav2vec_py",
+			"version":"1",
+			"last_inference":1729222246637,
+			"inference_count":75,
+			"execution_count":65,
+			"inference_stats":
+				{
+					"success":{"count":75,"ns":99950177301},
+					"fail":{"count":0,"ns":0},
+					"queue":{"count":75,"ns":63011591178},
+					"compute_input":{"count":75,"ns":45922163},
+					"compute_infer":{"count":75,"ns":36873559902},
+					"compute_output":{"count":75,"ns":17144582},
+					"cache_hit":{"count":0,"ns":0},
+					"cache_miss":{"count":0,"ns":0}
+				},
+			"batch_stats":[
+				{
+					"batch_size":1,
+					"compute_input":{"count":63,"ns":3387259},
+					"compute_infer":{"count":63,"ns":10123250306},
+					"compute_output":{"count":63,"ns":5816462}
+				},
+				{
+					"batch_size":4,
+					"compute_input":{"count":1,"ns":9779594},
+					"compute_infer":{"count":1,"ns":695323113},
+					"compute_output":{"count":1,"ns":361630}
+				},
+				{
+					"batch_size":8,
+					"compute_input":{"count":1,"ns":427066},
+					"compute_infer":{"count":1,"ns":2996127143},
+					"compute_output":{"count":1,"ns":1235200}
+				}
+			],
+			"memory_usage":[]
+		}
+	]
+}
+
+Running perf_analyzer with concurrency=2
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 2 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 2
+  Client: 
+    Request count: 110
+    Throughput: 1.52774 infer/sec
+    Avg latency: 1302340 usec (standard deviation 42325 usec)
+    p50 latency: 1290061 usec
+    p90 latency: 1336774 usec
+    p95 latency: 1354462 usec
+    p99 latency: 1529087 usec
+    Avg HTTP time: 1302298 usec (send/recv 410 usec + response wait 1301888 usec)
+  Server: 
+    Inference count: 110
+    Execution count: 55
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 110
+    Avg request latency: 1301453 usec (overhead 31 usec + queue 1000166 usec + cache hit/miss 301256 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 301256 usec (cache lookup/insertion 0 usec + compute input 76 usec + compute infer 301050 usec + compute output 130 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 2, throughput: 1.52774 infer/sec, latency 1302340 usec
+Logging stats after concurrency=2
+{
+	"model_stats":[
+		{
+			"name":"wav2vec_py",
+			"version":"1",
+			"last_inference":1729222321198,
+			"inference_count":187,
+			"execution_count":121,
+			"inference_stats":
+				{
+					"success":{"count":187,"ns":246120143568},
+					"fail":{"count":0,"ns":0},
+					"queue":{"count":187,"ns":175030178563},
+					"compute_input":{"count":187,"ns":54482741},
+					"compute_infer":{"count":187,"ns":70998454754},
+					"compute_output":{"count":187,"ns":31732434},
+					"cache_hit":{"count":0,"ns":0},
+					"cache_miss":{"count":0,"ns":0}
+				},
+			"batch_stats":[
+				{
+					"batch_size":1,
+					"compute_input":{"count":63,"ns":3387259},
+					"compute_infer":{"count":63,"ns":10123250306},
+					"compute_output":{"count":63,"ns":5816462}
+				},
+				{
+					"batch_size":2,
+					"compute_input":{"count":56,"ns":4280289},
+					"compute_infer":{"count":56,"ns":17062447426},
+					"compute_output":{"count":56,"ns":7293926}
+				},
+				{
+					"batch_size":4,
+					"compute_input":{"count":1,"ns":9779594},
+					"compute_infer":{"count":1,"ns":695323113},
+					"compute_output":{"count":1,"ns":361630}
+				},
+				{
+					"batch_size":8,
+					"compute_input":{"count":1,"ns":427066},
+					"compute_infer":{"count":1,"ns":2996127143},
+					"compute_output":{"count":1,"ns":1235200}
+				}
+			],
+			"memory_usage":[]
+		}
+	]
+}
+
+Running perf_analyzer with concurrency=3
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 3 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 3
+  Client: 
+    Request count: 147
+    Throughput: 2.04161 infer/sec
+    Avg latency: 1456208 usec (standard deviation 48480 usec)
+    p50 latency: 1435208 usec
+    p90 latency: 1518179 usec
+    p95 latency: 1566880 usec
+    p99 latency: 1650671 usec
+    Avg HTTP time: 1456162 usec (send/recv 393 usec + response wait 1455769 usec)
+  Server: 
+    Inference count: 147
+    Execution count: 49
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 147
+    Avg request latency: 1455309 usec (overhead 36 usec + queue 999969 usec + cache hit/miss 455304 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 455304 usec (cache lookup/insertion 0 usec + compute input 99 usec + compute infer 455015 usec + compute output 189 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 3, throughput: 2.04161 infer/sec, latency 1456208 usec
+Logging stats after concurrency=3
+{
+	"model_stats":[
+		{
+			"name":"wav2vec_py",
+			"version":"1",
+			"last_inference":1729222394076,
+			"inference_count":337,
+			"execution_count":171,
+			"inference_stats":
+				{
+					"success":{"count":337,"ns":464325208648},
+					"fail":{"count":0,"ns":0},
+					"queue":{"count":337,"ns":325026047474},
+					"compute_input":{"count":337,"ns":69422921},
+					"compute_infer":{"count":337,"ns":139159014698},
+					"compute_output":{"count":337,"ns":60047082},
+					"cache_hit":{"count":0,"ns":0},
+					"cache_miss":{"count":0,"ns":0}
+				},
+			"batch_stats":[
+				{
+					"batch_size":1,
+					"compute_input":{"count":63,"ns":3387259},
+					"compute_infer":{"count":63,"ns":10123250306},
+					"compute_output":{"count":63,"ns":5816462}
+				},
+				{
+					"batch_size":2,
+					"compute_input":{"count":56,"ns":4280289},
+					"compute_infer":{"count":56,"ns":17062447426},
+					"compute_output":{"count":56,"ns":7293926}
+				},
+				{
+					"batch_size":3,
+					"compute_input":{"count":50,"ns":4980060},
+					"compute_infer":{"count":50,"ns":22720186648},
+					"compute_output":{"count":50,"ns":9438216}
+				},
+				{
+					"batch_size":4,
+					"compute_input":{"count":1,"ns":9779594},
+					"compute_infer":{"count":1,"ns":695323113},
+					"compute_output":{"count":1,"ns":361630}
+				},	
+				{
+					"batch_size":8,
+					"compute_input":{"count":1,"ns":427066},
+					"compute_infer":{"count":1,"ns":2996127143},
+					"compute_output":{"count":1,"ns":1235200}
+				}
+			],
+			"memory_usage":[]
+		}
+	]
+}
+
+Running perf_analyzer with concurrency=4
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 4 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 4
+  Client: 
+    Request count: 464
+    Throughput: 6.4441 infer/sec
+    Avg latency: 616698 usec (standard deviation 44479 usec)
+    p50 latency: 609657 usec
+    p90 latency: 651849 usec
+    p95 latency: 733797 usec
+    p99 latency: 790498 usec
+    Avg HTTP time: 616654 usec (send/recv 524 usec + response wait 616130 usec)
+  Server: 
+    Inference count: 464
+    Execution count: 116
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 464
+    Avg request latency: 615646 usec (overhead 49 usec + queue 264 usec + cache hit/miss 615333 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 615333 usec (cache lookup/insertion 0 usec + compute input 101 usec + compute infer 615011 usec + compute output 220 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 4, throughput: 6.4441 infer/sec, latency 616698 usec
+Logging stats after concurrency=4
+{
+	"model_stats":[
+		{
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222466396,
+      "inference_count":805,
+      "execution_count":288,
+      "inference_stats":
+        {
+          "success":{"count":805,"ns":752738823432},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":805,"ns":325149603649},
+          "compute_input":{"count":805,"ns":117148393},
+          "compute_infer":{"count":805,"ns":427275667454},
+          "compute_output":{"count":805,"ns":162984522},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":63,"ns":3387259},
+          "compute_infer":{"count":63,"ns":10123250306},
+          "compute_output":{"count":63,"ns":5816462}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":56,"ns":4280289},
+          "compute_infer":{"count":56,"ns":17062447426},
+          "compute_output":{"count":56,"ns":7293926}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":50,"ns":4980060},
+          "compute_infer":{"count":50,"ns":22720186648},
+          "compute_output":{"count":50,"ns":9438216}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":118,"ns":21710962},
+          "compute_infer":{"count":118,"ns":72724486302},
+          "compute_output":{"count":118,"ns":26095990}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=5
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 5 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 5
+  Client: 
+    Request count: 464
+    Throughput: 6.44416 infer/sec
+    Avg latency: 770162 usec (standard deviation 178454 usec)
+    p50 latency: 613221 usec
+    p90 latency: 1223978 usec
+    p95 latency: 1232531 usec
+    p99 latency: 1315805 usec
+    Avg HTTP time: 770115 usec (send/recv 524 usec + response wait 769591 usec)
+  Server: 
+    Inference count: 464
+    Execution count: 116
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 464
+    Avg request latency: 769094 usec (overhead 51 usec + queue 153164 usec + cache hit/miss 615879 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 615879 usec (cache lookup/insertion 0 usec + compute input 106 usec + compute infer 615556 usec + compute output 216 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 5, throughput: 6.44416 infer/sec, latency 770162 usec
+Logging stats after concurrency=5
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222539236,
+      "inference_count":1274,
+      "execution_count":406,
+      "inference_stats":
+        {
+          "success":{"count":1274,"ns":1113943716421},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":1274,"ns":397838589373},
+          "compute_input":{"count":1274,"ns":167063330},
+          "compute_infer":{"count":1274,"ns":715617018415},
+          "compute_output":{"count":1274,"ns":264634162},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":64,"ns":3442624},
+          "compute_infer":{"count":64,"ns":10265802755},
+          "compute_output":{"count":64,"ns":5897882}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":56,"ns":4280289},
+          "compute_infer":{"count":56,"ns":17062447426},
+          "compute_output":{"count":56,"ns":7293926}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":50,"ns":4980060},
+          "compute_infer":{"count":50,"ns":22720186648},
+          "compute_output":{"count":50,"ns":9438216}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":235,"ns":34175855},
+          "compute_infer":{"count":235,"ns":144774185930},
+          "compute_output":{"count":235,"ns":51488045}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=6
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 6 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 6
+  Client: 
+    Request count: 468
+    Throughput: 6.4997 infer/sec
+    Avg latency: 914238 usec (standard deviation 121448 usec)
+    p50 latency: 639029 usec
+    p90 latency: 1227003 usec
+    p95 latency: 1234442 usec
+    p99 latency: 1249215 usec
+    Avg HTTP time: 914194 usec (send/recv 339 usec + response wait 913855 usec)
+  Server: 
+    Inference count: 468
+    Execution count: 117
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 468
+    Avg request latency: 913390 usec (overhead 33 usec + queue 302994 usec + cache hit/miss 610363 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 610363 usec (cache lookup/insertion 0 usec + compute input 122 usec + compute infer 610018 usec + compute output 222 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 6, throughput: 6.4997 infer/sec, latency 914238 usec
+Logging stats after concurrency=6
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222612133,
+      "inference_count":1748,
+      "execution_count":525,
+      "inference_stats":
+        {
+          "success":{"count":1748,"ns":1547687553255},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":1748,"ns":542876220523},
+          "compute_input":{"count":1748,"ns":225023020},
+          "compute_infer":{"count":1748,"ns":1004144476751},
+          "compute_output":{"count":1748,"ns":369807962},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":64,"ns":3442624},
+          "compute_infer":{"count":64,"ns":10265802755},
+          "compute_output":{"count":64,"ns":5897882}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":57,"ns":4377816},
+          "compute_infer":{"count":57,"ns":17346498638},
+          "compute_output":{"count":57,"ns":7425924}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":50,"ns":4980060},
+          "compute_infer":{"count":50,"ns":22720186648},
+          "compute_output":{"count":50,"ns":9438216}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":353,"ns":48617014},
+          "compute_infer":{"count":353,"ns":216764024908},
+          "compute_output":{"count":353,"ns":77715496}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=7
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 7 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 7
+  Client: 
+    Request count: 440
+    Throughput: 6.1108 infer/sec
+    Avg latency: 1139410 usec (standard deviation 61947 usec)
+    p50 latency: 1253351 usec
+    p90 latency: 1425559 usec
+    p95 latency: 1451000 usec
+    p99 latency: 1583429 usec
+    Avg HTTP time: 1139359 usec (send/recv 458 usec + response wait 1138901 usec)
+  Server: 
+    Inference count: 440
+    Execution count: 110
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 440
+    Avg request latency: 1138386 usec (overhead 44 usec + queue 485322 usec + cache hit/miss 653020 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 653020 usec (cache lookup/insertion 0 usec + compute input 136 usec + compute infer 652655 usec + compute output 228 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 7, throughput: 6.1108 infer/sec, latency 1139410 usec
+Logging stats after concurrency=7
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222685678,
+      "inference_count":2195,
+      "execution_count":637,
+      "inference_stats":
+        {
+          "success":{"count":2195,"ns":2059079135809},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":2195,"ns":761601167518},
+          "compute_input":{"count":2195,"ns":285979587},
+          "compute_infer":{"count":2195,"ns":1296623039469},
+          "compute_output":{"count":2195,"ns":473127808},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":64,"ns":3442624},
+          "compute_infer":{"count":64,"ns":10265802755},
+          "compute_output":{"count":64,"ns":5897882}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":57,"ns":4377816},
+          "compute_infer":{"count":57,"ns":17346498638},
+          "compute_output":{"count":57,"ns":7425924}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":51,"ns":5053145},
+          "compute_infer":{"count":51,"ns":23237933514},
+          "compute_output":{"count":51,"ns":9600066}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":464,"ns":63801342},
+          "compute_infer":{"count":464,"ns":289495355438},
+          "compute_output":{"count":464,"ns":103424070}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=8
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 8 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 8
+  Client: 
+    Request count: 444
+    Throughput: 6.16636 infer/sec
+    Avg latency: 1287418 usec (standard deviation 75680 usec)
+    p50 latency: 1276926 usec
+    p90 latency: 1370620 usec
+    p95 latency: 1421684 usec
+    p99 latency: 1534536 usec
+    Avg HTTP time: 1287334 usec (send/recv 818 usec + response wait 1286516 usec)
+  Server: 
+    Inference count: 444
+    Execution count: 111
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 444
+    Avg request latency: 1285426 usec (overhead 51 usec + queue 638960 usec + cache hit/miss 646415 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 646415 usec (cache lookup/insertion 0 usec + compute input 147 usec + compute infer 646056 usec + compute output 211 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 8, throughput: 6.16636 infer/sec, latency 1287418 usec
+Logging stats after concurrency=8
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222758773,
+      "inference_count":2647,
+      "execution_count":750,
+      "inference_stats":
+        {
+          "success":{"count":2647,"ns":2639685603399},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":2647,"ns":1050249321287},
+          "compute_input":{"count":2647,"ns":352583979},
+          "compute_infer":{"count":2647,"ns":1588396707589},
+          "compute_output":{"count":2647,"ns":568461988},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":64,"ns":3442624},
+          "compute_infer":{"count":64,"ns":10265802755},
+          "compute_output":{"count":64,"ns":5897882}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":57,"ns":4377816},
+          "compute_infer":{"count":57,"ns":17346498638},
+          "compute_output":{"count":57,"ns":7425924}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":51,"ns":5053145},
+          "compute_infer":{"count":51,"ns":23237933514},
+          "compute_output":{"count":51,"ns":9600066}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":577,"ns":80452440},
+          "compute_infer":{"count":577,"ns":362438772468},
+          "compute_output":{"count":577,"ns":127257615}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=9
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 9 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 9
+  Client: 
+    Request count: 456
+    Throughput: 6.33298 infer/sec
+    Avg latency: 1404378 usec (standard deviation 10665 usec)
+    p50 latency: 1250540 usec
+    p90 latency: 1868787 usec
+    p95 latency: 1894537 usec
+    p99 latency: 2079453 usec
+    Avg HTTP time: 1404312 usec (send/recv 544 usec + response wait 1403768 usec)
+  Server: 
+    Inference count: 456
+    Execution count: 114
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 456
+    Avg request latency: 1403170 usec (overhead 63 usec + queue 775305 usec + cache hit/miss 627802 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 627802 usec (cache lookup/insertion 0 usec + compute input 151 usec + compute infer 627433 usec + compute output 216 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 9, throughput: 6.33298 infer/sec, latency 1404378 usec
+Logging stats after concurrency=9
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222831901,
+      "inference_count":3112,
+      "execution_count":867,
+      "inference_stats":
+        {
+          "success":{"count":3112,"ns":3292489146397},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":3112,"ns":1411461153525},
+          "compute_input":{"count":3112,"ns":422902541},
+          "compute_infer":{"count":3112,"ns":1879788561073},
+          "compute_output":{"count":3112,"ns":669079025},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":57,"ns":4377816},
+          "compute_infer":{"count":57,"ns":17346498638},
+          "compute_output":{"count":57,"ns":7425924}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":51,"ns":5053145},
+          "compute_infer":{"count":51,"ns":23237933514},
+          "compute_output":{"count":51,"ns":9600066}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":693,"ns":98020668},
+          "compute_infer":{"count":693,"ns":435243152429},
+          "compute_output":{"count":693,"ns":152392675}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=10
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 10 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 10
+  Client: 
+    Request count: 432
+    Throughput: 5.9997 infer/sec
+    Avg latency: 1637951 usec (standard deviation 201363 usec)
+    p50 latency: 1545805 usec
+    p90 latency: 2078418 usec
+    p95 latency: 2130105 usec
+    p99 latency: 2220614 usec
+    Avg HTTP time: 1637882 usec (send/recv 583 usec + response wait 1637299 usec)
+  Server: 
+    Inference count: 432
+    Execution count: 108
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 432
+    Avg request latency: 1636499 usec (overhead 56 usec + queue 976249 usec + cache hit/miss 660194 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 660194 usec (cache lookup/insertion 0 usec + compute input 159 usec + compute infer 659813 usec + compute output 222 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 10, throughput: 5.9997 infer/sec, latency 1637951 usec
+Logging stats after concurrency=10
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222905182,
+      "inference_count":3554,
+      "execution_count":978,
+      "inference_stats":
+        {
+          "success":{"count":3554,"ns":4018164147439},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":3554,"ns":1845083870748},
+          "compute_input":{"count":3554,"ns":493120787},
+          "compute_infer":{"count":3554,"ns":2171647894067},
+          "compute_output":{"count":3554,"ns":767573905},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":51,"ns":5053145},
+          "compute_infer":{"count":51,"ns":23237933514},
+          "compute_output":{"count":51,"ns":9600066}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":803,"ns":115498969},
+          "compute_infer":{"count":803,"ns":508045083990},
+          "compute_output":{"count":803,"ns":176957107}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=11
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 11 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 11
+  Client: 
+    Request count: 444
+    Throughput: 6.16628 infer/sec
+    Avg latency: 1760450 usec (standard deviation 118638 usec)
+    p50 latency: 1886264 usec
+    p90 latency: 2005459 usec
+    p95 latency: 2055521 usec
+    p99 latency: 2276314 usec
+    Avg HTTP time: 1760381 usec (send/recv 726 usec + response wait 1759655 usec)
+  Server: 
+    Inference count: 444
+    Execution count: 111
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 444
+    Avg request latency: 1758855 usec (overhead 66 usec + queue 1113625 usec + cache hit/miss 645164 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 645164 usec (cache lookup/insertion 0 usec + compute input 139 usec + compute infer 644814 usec + compute output 210 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 11, throughput: 6.16628 infer/sec, latency 1760450 usec
+Logging stats after concurrency=11
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729222978592,
+      "inference_count":4009,
+      "execution_count":1092,
+      "inference_stats":
+        {
+          "success":{"count":4009,"ns":4817793290261},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":4009,"ns":2351920725560},
+          "compute_input":{"count":4009,"ns":556390705},
+          "compute_infer":{"count":4009,"ns":2464252034450},
+          "compute_output":{"count":4009,"ns":863020081},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":916,"ns":131251974},
+          "compute_infer":{"count":916,"ns":580851218781},
+          "compute_output":{"count":916,"ns":200710435}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":1,"ns":427066},
+          "compute_infer":{"count":1,"ns":2996127143},
+          "compute_output":{"count":1,"ns":1235200}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=12
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 12 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 12
+  Client: 
+    Request count: 448
+    Throughput: 6.22183 infer/sec
+    Avg latency: 1907071 usec (standard deviation 141969 usec)
+    p50 latency: 1904692 usec
+    p90 latency: 1995485 usec
+    p95 latency: 2063297 usec
+    p99 latency: 2180152 usec
+    Avg HTTP time: 1906984 usec (send/recv 830 usec + response wait 1906154 usec)
+  Server: 
+    Inference count: 448
+    Execution count: 75
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 448
+    Avg request latency: 1905137 usec (overhead 132 usec + queue 844881 usec + cache hit/miss 1060124 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 1060124 usec (cache lookup/insertion 0 usec + compute input 271 usec + compute infer 1059428 usec + compute output 425 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 12, throughput: 6.22183 infer/sec, latency 1907071 usec
+Logging stats after concurrency=12
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729223052247,
+      "inference_count":4469,
+      "execution_count":1169,
+      "inference_stats":
+        {
+          "success":{"count":4469,"ns":5694383867901},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":4469,"ns":2740664892090},
+          "compute_input":{"count":4469,"ns":680506109},
+          "compute_infer":{"count":4469,"ns":2951712054942},
+          "compute_output":{"count":4469,"ns":1058152645},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":955,"ns":138792647},
+          "compute_infer":{"count":955,"ns":605989321164},
+          "compute_output":{"count":955,"ns":209653184}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":39,"ns":12171155},
+          "compute_infer":{"count":39,"ns":51359578513},
+          "compute_output":{"count":39,"ns":21155396}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=13
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 13 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 13
+  Client: 
+    Request count: 454
+    Throughput: 6.30524 infer/sec
+    Avg latency: 2045585 usec (standard deviation 161511 usec)
+    p50 latency: 2029762 usec
+    p90 latency: 2126806 usec
+    p95 latency: 2244848 usec
+    p99 latency: 2467509 usec
+    Avg HTTP time: 2045501 usec (send/recv 830 usec + response wait 2044671 usec)
+  Server: 
+    Inference count: 454
+    Execution count: 70
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 454
+    Avg request latency: 2043750 usec (overhead 96 usec + queue 961656 usec + cache hit/miss 1081998 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 1081998 usec (cache lookup/insertion 0 usec + compute input 272 usec + compute infer 1081331 usec + compute output 394 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 13, throughput: 6.30524 infer/sec, latency 2045585 usec
+Logging stats after concurrency=13
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729223126517,
+      "inference_count":4936,
+      "execution_count":1241,
+      "inference_stats":
+        {
+          "success":{"count":4936,"ns":6651135883351},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":4936,"ns":3191241363554},
+          "compute_input":{"count":4936,"ns":807909531},
+          "compute_infer":{"count":4936,"ns":3457529879148},
+          "compute_output":{"count":4936,"ns":1243982372},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":956,"ns":138886138},
+          "compute_infer":{"count":956,"ns":606632754217},
+          "compute_output":{"count":956,"ns":209856141}
+        },
+        {
+          "batch_size":5,
+          "compute_input":{"count":35,"ns":8330514},
+          "compute_infer":{"count":35,"ns":28106970034},
+          "compute_output":{"count":35,"ns":9712751}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":75,"ns":22843266},
+          "compute_infer":{"count":75,"ns":96698233741},
+          "compute_output":{"count":75,"ns":38212164}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=14
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 14 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 14
+  Client: 
+    Request count: 438
+    Throughput: 6.08197 infer/sec
+    Avg latency: 2258017 usec (standard deviation 182295 usec)
+    p50 latency: 2239532 usec
+    p90 latency: 2368642 usec
+    p95 latency: 2453554 usec
+    p99 latency: 2691788 usec
+    Avg HTTP time: 2257927 usec (send/recv 738 usec + response wait 2257189 usec)
+  Server: 
+    Inference count: 438
+    Execution count: 63
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 438
+    Avg request latency: 2256226 usec (overhead 175 usec + queue 1100333 usec + cache hit/miss 1155718 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 1155718 usec (cache lookup/insertion 0 usec + compute input 431 usec + compute infer 1154812 usec + compute output 473 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 14, throughput: 6.08197 infer/sec, latency 2258017 usec
+Logging stats after concurrency=14
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729223200126,
+      "inference_count":5388,
+      "execution_count":1306,
+      "inference_stats":
+        {
+          "success":{"count":5388,"ns":7671546066895},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":5388,"ns":3688998793135},
+          "compute_input":{"count":5388,"ns":1000752111},
+          "compute_infer":{"count":5388,"ns":3979687827782},
+          "compute_output":{"count":5388,"ns":1457746386},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":957,"ns":138999283},
+          "compute_infer":{"count":957,"ns":607434974037},
+          "compute_output":{"count":957,"ns":210588968}
+        },
+        {
+          "batch_size":5,
+          "compute_input":{"count":35,"ns":8330514},
+          "compute_infer":{"count":35,"ns":28106970034},
+          "compute_output":{"count":35,"ns":9712751}
+        },
+        {
+          "batch_size":6,
+          "compute_input":{"count":32,"ns":13769860},
+          "compute_infer":{"count":32,"ns":31057301363},
+          "compute_output":{"count":32,"ns":12347627}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":107,"ns":36564621},
+          "compute_infer":{"count":107,"ns":138273891388},
+          "compute_output":{"count":107,"ns":55305532}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=15
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 15 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 15
+  Client: 
+    Request count: 439
+    Throughput: 6.09691 infer/sec
+    Avg latency: 2414335 usec (standard deviation 65423 usec)
+    p50 latency: 2393024 usec
+    p90 latency: 2577385 usec
+    p95 latency: 2690819 usec
+    p99 latency: 2875663 usec
+    Avg HTTP time: 2414226 usec (send/recv 1282 usec + response wait 2412944 usec)
+  Server: 
+    Inference count: 439
+    Execution count: 59
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 439
+    Avg request latency: 2411416 usec (overhead 86 usec + queue 1193364 usec + cache hit/miss 1217966 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 1217966 usec (cache lookup/insertion 0 usec + compute input 385 usec + compute infer 1217111 usec + compute output 468 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 15, throughput: 6.09691 infer/sec, latency 2414335 usec
+Logging stats after concurrency=15
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729223273918,
+      "inference_count":5842,
+      "execution_count":1367,
+      "inference_stats":
+        {
+          "success":{"count":5842,"ns":8766705919298},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":5842,"ns":4231446124511},
+          "compute_input":{"count":5842,"ns":1180910434},
+          "compute_infer":{"count":5842,"ns":4531966802223},
+          "compute_output":{"count":5842,"ns":1670661821},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":958,"ns":139103099},
+          "compute_infer":{"count":958,"ns":608128453025},
+          "compute_output":{"count":958,"ns":210792806}
+        },
+        {
+          "batch_size":5,
+          "compute_input":{"count":35,"ns":8330514},
+          "compute_infer":{"count":35,"ns":28106970034},
+          "compute_output":{"count":35,"ns":9712751}
+        },
+        {
+          "batch_size":6,
+          "compute_input":{"count":32,"ns":13769860},
+          "compute_infer":{"count":32,"ns":31057301363},
+          "compute_output":{"count":32,"ns":12347627}
+        },
+        {
+          "batch_size":7,
+          "compute_input":{"count":30,"ns":7866789},
+          "compute_infer":{"count":30,"ns":34000668479},
+          "compute_output":{"count":30,"ns":13084549}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":137,"ns":52149063},
+          "compute_infer":{"count":137,"ns":177211438780},
+          "compute_output":{"count":137,"ns":70369062}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
+
+Running perf_analyzer with concurrency=16
+*** Measurement Settings ***
+  Batch size: 1
+  Service Kind: TRITON
+  Using "time_windows" mode for stabilization
+  Stabilizing using average latency and throughput
+  Measurement window: 20000 msec
+  Latency limit: 0 msec
+  Concurrency limit: 16 concurrent requests
+  Using synchronous calls for inference
+
+Request concurrency: 16
+  Client: 
+    Request count: 444
+    Throughput: 6.16633 infer/sec
+    Avg latency: 2567018 usec (standard deviation 34340 usec)
+    p50 latency: 2597703 usec
+    p90 latency: 2636905 usec
+    p95 latency: 2656521 usec
+    p99 latency: 2678376 usec
+    Avg HTTP time: 2566923 usec (send/recv 1309 usec + response wait 2565614 usec)
+  Server: 
+    Inference count: 444
+    Execution count: 56
+    Cache hit count: 0
+    Cache miss count: 0
+    Successful request count: 444
+    Avg request latency: 2564453 usec (overhead 173 usec + queue 1276257 usec + cache hit/miss 1288023 usec)
+      Average Cache Hit Latency: 0 usec
+      Average Cache Miss Latency: 1288023 usec (cache lookup/insertion 0 usec + compute input 327 usec + compute infer 1287187 usec + compute output 507 usec)
+
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 16, throughput: 6.16633 infer/sec, latency 2567018 usec
+Logging stats after concurrency=16
+{
+  "model_stats":[
+    {
+      "name":"wav2vec_py",
+      "version":"1",
+      "last_inference":1729223348523,
+      "inference_count":6302,
+      "execution_count":1425,
+      "inference_stats":
+        {
+          "success":{"count":6302,"ns":9946615651869},
+          "fail":{"count":0,"ns":0},
+          "queue":{"count":6302,"ns":4818241299910},
+          "compute_input":{"count":6302,"ns":1331748750},
+          "compute_infer":{"count":6302,"ns":5124617878779},
+          "compute_output":{"count":6302,"ns":1904082525},
+          "cache_hit":{"count":0,"ns":0},
+          "cache_miss":{"count":0,"ns":0}
+        },
+      "batch_stats":[
+        {
+          "batch_size":1,
+          "compute_input":{"count":65,"ns":3488274},
+          "compute_infer":{"count":65,"ns":10440136395},
+          "compute_output":{"count":65,"ns":5974679}
+        },
+        {
+          "batch_size":2,
+          "compute_input":{"count":58,"ns":4530337},
+          "compute_infer":{"count":58,"ns":17672302013},
+          "compute_output":{"count":58,"ns":7544500}
+        },
+        {
+          "batch_size":3,
+          "compute_input":{"count":52,"ns":5139111},
+          "compute_infer":{"count":52,"ns":23697800587},
+          "compute_output":{"count":52,"ns":9744354}
+        },
+        {
+          "batch_size":4,
+          "compute_input":{"count":959,"ns":139191878},
+          "compute_infer":{"count":959,"ns":608861090068},
+          "compute_output":{"count":959,"ns":211050500}
+        },
+        {
+          "batch_size":5,
+          "compute_input":{"count":35,"ns":8330514},
+          "compute_infer":{"count":35,"ns":28106970034},
+          "compute_output":{"count":35,"ns":9712751}
+        },
+        {
+          "batch_size":6,
+          "compute_input":{"count":32,"ns":13769860},
+          "compute_infer":{"count":32,"ns":31057301363},
+          "compute_output":{"count":32,"ns":12347627}
+        },
+        {
+          "batch_size":7,
+          "compute_input":{"count":30,"ns":7866789},
+          "compute_infer":{"count":30,"ns":34000668479},
+          "compute_output":{"count":30,"ns":13084549}
+        },
+        {
+          "batch_size":8,
+          "compute_input":{"count":194,"ns":70959463},
+          "compute_infer":{"count":194,"ns":250926504828},
+          "compute_output":{"count":194,"ns":99417803}
+        }
+      ],
+      "memory_usage":[]
+    }
+  ]
+}
