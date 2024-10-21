@@ -1,0 +1,30 @@
+model_repository: "models/"
+
+profile_models: 
+  wav2vec_py:
+    perf_analyzer_flags:
+      percentile: 95
+      protocol: http 
+    parameters:
+      batch_sizes:
+        start: 4
+        stop: 9
+      concurrency:
+        - 2
+        - 4
+        - 8
+
+triton_server_flags:
+  strict_model_config: False
+  log_verbose: True
+
+always_report_gpu_metrics: True
+
+report_model_configs:
+  model_config_default:
+    plots:
+      throughput_v_latency:
+        title: "Throughput vs Latency"
+        x_axis: perf_latency_p99
+        y_axis: perf_throughput
+        monotonic: True

@@ -1,0 +1,3 @@
+Model,GPU UUID,GPU Memory Usage (MB),GPU Utilization (%),GPU Power Usage (W)
+triton-server,GPU-beeaf840-b907-69d4-0e77-bbf1c2a69fe5,203.0,0.0,23.3
+
