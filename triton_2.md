@@ -80,35 +80,35 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 | `cpu_only_composing_models <comma-delimited-string-list>`                        | Danh sách các mô hình thành phần chỉ sử dụng CPU|
 | `[override_output_model_repository]: <boolean> \| default: false`               | Cho phép ghi đè nội dung của repository đầu ra của mô hình|
 | `[concurrency]: <comma-delimited-string|list|range>`                                    | Các giá trị concurrency sử dụng |
-| `[batch_sizes]: <comma-delimited-string|list|range> | default: 1`                                    | Các giá trị batch size sử dụng|
-| `[collect_cpu_metrics]: <bool> | default: false`                            | Thu thập số liệu CPU |
-| `[client_protocol]: <string> | default: grpc`                                | Giao thức sử dụng để giao tiếp với Triton Inference Server (chỉ cho phép 'http' và 'grpc') |
-| `[perf_output]: <bool> | default: false`                                    | Bật hoặc tắt việc ghi kết quả từ perf_analyzer ra file hoặc stdout |
+| `[batch_sizes]: <comma-delimited-string|list|range> \| default: 1`                                    | Các giá trị batch size sử dụng|
+| `[collect_cpu_metrics]: <bool> \| default: false`                            | Thu thập số liệu CPU |
+| `[client_protocol]: <string> \| default: grpc`                                | Giao thức sử dụng để giao tiếp với Triton Inference Server (chỉ cho phép 'http' và 'grpc') |
+| `[perf_output]: <bool> \| default: false`                                    | Bật hoặc tắt việc ghi kết quả từ perf_analyzer ra file hoặc stdout |
 | `[perf_output_path]: <str>`                               | Đường dẫn để ghi kết quả perf_analyzer nếu tùy chọn perf_output được bật |
-| `[perf_analyzer_max_auto_adjusts]: <int> | default: 10`                 | Số lần tối đa perf_analyzer tự điều chỉnh để phân tích hiệu năng mô hình |
-| `[triton_docker_image]: <string> | default: nvcr.io/nvidia/tritonserver:24.09-py3`           | Tag của hình ảnh Docker Triton sử dụng khi khởi chạy trong chế độ Docker |
+| `[perf_analyzer_max_auto_adjusts]: <int> \| default: 10`                 | Số lần tối đa perf_analyzer tự điều chỉnh để phân tích hiệu năng mô hình |
+| `[triton_docker_image]: <string> \| default: nvcr.io/nvidia/tritonserver:24.09-py3`           | Tag của hình ảnh Docker Triton sử dụng khi khởi chạy trong chế độ Docker |
 | `[triton_docker_mounts]: <list of strings>`                           | Danh sách các đường dẫn được gắn kết vào container Docker của Triton |
 | `[triton_docker_shm_size]: <string>`                         | Kích thước /dev/shm cho container Docker của Triton |
-| `[triton_launch_mode]: <string> | default: 'local'`                             | Chế độ khởi chạy Triton: "docker", "local", "remote" hoặc "c_api" |
-| `[gpus]: <string|comma-delimited-list-string> | default: 'all'` | Danh sách GPU UUID để sử dụng cho việc phân tích hiệu năng|
-| `[run_config_search_mode]: <string> | default: brute` | Chế độ tìm kiếm cấu hình: "brute", "quick", hoặc "optuna"|
-| `[run_config_search_min_concurrency]: <int> | default: 1 `              | Concurrency tối thiểu sử dụng trong quá trình tìm kiếm cấu hình|
-| `[run_config_search_max_concurrency]: <int> | default: 1024`              | Concurrency tối đa sử dụng trong quá trình tìm kiếm cấu hình|
-| `[run_config_search_min_model_batch_size]: <int> | default: 1`         | Batch size tối thiểu cho mô hình sử dụng trong quá trình tìm kiếm cấu hình|
-| `[run_config_search_max_model_batch_size]: <int> | default: 128`         | Batch size tối đa cho mô hình sử dụng trong quá trình tìm kiếm cấu hình|
-| `[run_config_search_min_instance_count]: <int> | default: 1`           | Số lượng instance tối thiểu trong quá trình tìm kiếm cấu hình  |
-| `[run_config_search_max_instance_count]: <int> | default: 5`           | Số lượng instance tối đa trong quá trình tìm kiếm cấu hình  |
-| `[run_config_search_max_binary_search_steps]: <int> | default: 5`      | Số bước tối đa trong quá trình tìm kiếm nhị phân  |
-| `[run_config_search_disable]: <bool> | default: false`                      | Vô hiệu hóa việc tự động tìm kiếm cấu hình  |
-| `[run_config_profile_models_concurrently_enable]: <bool> | default: false`  | Cho phép phân tích hiệu năng đồng thời tất cả các mô hình cung cấp |
-| `[min_percentage_of_search_space]: <int> | default: 5`                 | Tỷ lệ phần trăm tối thiểu của không gian tìm kiếm khi sử dụng Optuna |
-| `[always_report_gpu_metrics]: <bool> | default: false`                      | Luôn báo cáo các số liệu GPU, ngay cả khi mô hình chỉ sử dụng CPU |
-| `[skip_summary_reports]: <bool> | default: false`                           | Bỏ qua việc tạo báo cáo tóm tắt  |
-| `[skip_detailed_reports]: <bool> | default: false`                          | Bỏ qua việc tạo báo cáo chi tiết  |
-| `[model_type]: <string> | default: generic`                                     | Loại mô hình được phân tích: generic hoặc LLM |
-| `[filename_model_inference]: <string> | default: metrics-model-inference.csv`                       | Tên file chứa kết quả suy luận mô hình |
-| `[filename_model_gpu]: <string> | default: metrics-model-gpu.csv`                             | Tên file chứa kết quả số liệu GPU của mô hình |
-| `[filename_server_only]: <string> | default: metrics-server-only.csv`                           | Tên file chứa kết quả số liệu chỉ của server |
+| `[triton_launch_mode]: <string> \| default: 'local'`                             | Chế độ khởi chạy Triton: "docker", "local", "remote" hoặc "c_api" |
+| `[gpus]: <string|comma-delimited-list-string> \| default: 'all'` | Danh sách GPU UUID để sử dụng cho việc phân tích hiệu năng|
+| `[run_config_search_mode]: <string> \| default: brute` | Chế độ tìm kiếm cấu hình: "brute", "quick", hoặc "optuna"|
+| `[run_config_search_min_concurrency]: <int> \| default: 1 `              | Concurrency tối thiểu sử dụng trong quá trình tìm kiếm cấu hình|
+| `[run_config_search_max_concurrency]: <int> \| default: 1024`              | Concurrency tối đa sử dụng trong quá trình tìm kiếm cấu hình|
+| `[run_config_search_min_model_batch_size]: <int> \| default: 1`         | Batch size tối thiểu cho mô hình sử dụng trong quá trình tìm kiếm cấu hình|
+| `[run_config_search_max_model_batch_size]: <int> \| default: 128`         | Batch size tối đa cho mô hình sử dụng trong quá trình tìm kiếm cấu hình|
+| `[run_config_search_min_instance_count]: <int> \| default: 1`           | Số lượng instance tối thiểu trong quá trình tìm kiếm cấu hình  |
+| `[run_config_search_max_instance_count]: <int> \| default: 5`           | Số lượng instance tối đa trong quá trình tìm kiếm cấu hình  |
+| `[run_config_search_max_binary_search_steps]: <int> \| default: 5`      | Số bước tối đa trong quá trình tìm kiếm nhị phân  |
+| `[run_config_search_disable]: <bool> \| default: false`                      | Vô hiệu hóa việc tự động tìm kiếm cấu hình  |
+| `[run_config_profile_models_concurrently_enable]: <bool> \| default: false`  | Cho phép phân tích hiệu năng đồng thời tất cả các mô hình cung cấp |
+| `[min_percentage_of_search_space]: <int> \| default: 5`                 | Tỷ lệ phần trăm tối thiểu của không gian tìm kiếm khi sử dụng Optuna |
+| `[always_report_gpu_metrics]: <bool> \| default: false`                      | Luôn báo cáo các số liệu GPU, ngay cả khi mô hình chỉ sử dụng CPU |
+| `[skip_summary_reports]: <bool> \| default: false`                           | Bỏ qua việc tạo báo cáo tóm tắt  |
+| `[skip_detailed_reports]: <bool> \| default: false`                          | Bỏ qua việc tạo báo cáo chi tiết  |
+| `[model_type]: <string> \| default: generic`                                     | Loại mô hình được phân tích: generic hoặc LLM |
+| `[filename_model_inference]: <string> \| default: metrics-model-inference.csv`                       | Tên file chứa kết quả suy luận mô hình |
+| `[filename_model_gpu]: <string> \| default: metrics-model-gpu.csv`                             | Tên file chứa kết quả số liệu GPU của mô hình |
+| `[filename_server_only]: <string> \| default: metrics-server-only.csv`                           | Tên file chứa kết quả số liệu chỉ của server |
 | `[inference_output_fields]: <comma-delimited-string-list>`| Các trường cần thiết cho bảng số liệu suy luận mô hình |
 | `[gpu_output_fields]: <comma-delimited-string-list>`| Các trường cần thiết cho bảng số liệu GPU |
 | `[server_only_output_fields]: <comma-delimited-string-list>`                      | Các trường cần thiết cho bảng số liệu chỉ của server |
