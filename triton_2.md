@@ -90,7 +90,7 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 | `[triton_docker_mounts]: <list of strings>`                           | Danh sách các đường dẫn được gắn kết vào container Docker của Triton |
 | `[triton_docker_shm_size]: <string>`                         | Kích thước /dev/shm cho container Docker của Triton |
 | `[triton_launch_mode]: <string> \| default: 'local'`                             | Chế độ khởi chạy Triton: "docker", "local", "remote" hoặc "c_api" |
-| `[gpus]: <string|comma-delimited-list-string> \| default: 'all'` | Danh sách GPU UUID để sử dụng cho việc phân tích hiệu năng|
+| `[gpus]: <string \|comma-delimited-list-string> \| default: 'all'` | Danh sách GPU UUID để sử dụng cho việc phân tích hiệu năng|
 | `[run_config_search_mode]: <string> \| default: brute` | Chế độ tìm kiếm cấu hình: "brute", "quick", hoặc "optuna"|
 | `[run_config_search_min_concurrency]: <int> \| default: 1 `              | Concurrency tối thiểu sử dụng trong quá trình tìm kiếm cấu hình|
 | `[run_config_search_max_concurrency]: <int> \| default: 1024`              | Concurrency tối đa sử dụng trong quá trình tìm kiếm cấu hình|
