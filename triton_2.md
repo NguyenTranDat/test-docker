@@ -72,6 +72,7 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 
 ## config
 - Sử dụng tệp cấu hình yaml hoặc cli
+
 | **Tham số**                                        | **Mô tả**                       |
 |----------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | `model_repository: <string>`                                 | Đường dẫn đến repository chứa các mô hình Triton|
@@ -113,6 +114,7 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 | `[server_only_output_fields]: <comma-delimited-string-list>`                      | Các trường cần thiết cho bảng số liệu chỉ của server |
 
 - một số cấu hình chỉ cấu hình trong file .yaml
+
 | **Tham số**                                        | **Mô tả**                                                                                         |
 |----------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | `profile_models: <comma-delimited-string-list|list|profile_model>` | Danh sách các mô hình cần phân tích hiệu năng (dạng chuỗi phân tách bằng dấu phẩy hoặc danh sách)  |
