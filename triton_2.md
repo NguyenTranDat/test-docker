@@ -120,7 +120,7 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 | `profile_models: <comma-delimited-string-list|list|profile_model>` | Danh sách các mô hình cần phân tích hiệu năng (dạng chuỗi phân tách bằng dấu phẩy hoặc danh sách)  |
 | `cpu_only_composing_models: <comma-delimited-string-list>`      | Danh sách các mô hình thành phần chỉ phân tích hiệu năng bằng CPU                                  |
 | `[constraints: <constraint>]`                                  | Danh sách các giới hạn được đặt lên kết quả tìm kiếm cấu hình                                      |
-| `[objectives: <objective|list>]`                               | Danh sách các mục tiêu mà người dùng muốn sắp xếp kết quả tìm kiếm                                  |
+| `[objectives: <objective \|list>]`                               | Danh sách các mục tiêu mà người dùng muốn sắp xếp kết quả tìm kiếm                                  |
 | `[weighting: <int>]`                                           | Trọng số được sử dụng để ưu tiên các mục tiêu của mô hình (so với các mô hình khác) trong chế độ đa mô hình đồng thời |
 | `[triton_server_flags: <dict>]`                                | Các cờ tùy chỉnh để truyền cho các phiên bản Triton được khởi chạy bởi Model Analyzer              |
 | `[perf_analyzer_flags: <dict>]`                                | Các cờ tùy chỉnh để cấu hình perf_analyzer sử dụng bởi Model Analyzer                              |
