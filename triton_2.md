@@ -78,7 +78,7 @@ model-analyzer report --report-model-configs text_recognition_config_4,text_reco
 | `model_repository: <string>`                                 | Đường dẫn đến repository chứa các mô hình Triton|
 | `profile_models: <comma-delimited-string-list>`                                   | Danh sách các mô hình cần được phân tích hiệu năng (cách nhau bằng dấu phẩy)|
 | `cpu_only_composing_models <comma-delimited-string-list>`                        | Danh sách các mô hình thành phần chỉ sử dụng CPU|
-| `[override_output_model_repository]: <boolean> | default: false`               | Cho phép ghi đè nội dung của repository đầu ra của mô hình|
+| `[override_output_model_repository]: <boolean> \| default: false`               | Cho phép ghi đè nội dung của repository đầu ra của mô hình|
 | `[concurrency]: <comma-delimited-string|list|range>`                                    | Các giá trị concurrency sử dụng |
 | `[batch_sizes]: <comma-delimited-string|list|range> | default: 1`                                    | Các giá trị batch size sử dụng|
 | `[collect_cpu_metrics]: <bool> | default: false`                            | Thu thập số liệu CPU |
