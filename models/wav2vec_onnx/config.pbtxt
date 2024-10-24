@@ -1,4 +1,4 @@
-name: "wav2vec_model"
+name: "wav2vec_onnx"
 platform: "onnxruntime_onnx"
 max_batch_size: 16
 input [

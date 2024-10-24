@@ -8,7 +8,7 @@ model.eval()
 
 dummy_input = torch.randn(1, 16000)
 
-output_dir = "./models/wav2vec_model/1"
+output_dir = "./models/wav2vec_onnx/1"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 

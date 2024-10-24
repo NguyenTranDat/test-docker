@@ -11,7 +11,7 @@ import torchaudio
 class TritonPythonModel:
     def initialize(self, args):
         self.sample_rate = 16000
-        self.TRITON_SERVER_URL = "http://localhost:8000/v2/models/wav2vec_model/infer"
+        self.TRITON_SERVER_URL = "http://localhost:8000/v2/models/wav2vec_vino/infer"
 
         self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
 

@@ -26,13 +26,11 @@ class TritonPythonModel:
         print(len(requests))
         for request in requests:
             waveform = pb_utils.get_input_tensor_by_name(request, "waveform")
-            sample_rate = pb_utils.get_input_tensor_by_name(request, "sample_rate")
 
-            sample_rate = int(sample_rate.as_numpy().item())
             waveform = waveform.as_numpy()
             waveform = torch.tensor(waveform, dtype=torch.float32)
 
-            input_data = self.process_audio(waveform, sample_rate)
+            input_data = self.process_audio(waveform)
 
             with torch.no_grad():
                 output_data = self.model(input_data).last_hidden_state
@@ -46,11 +44,7 @@ class TritonPythonModel:
 
         return responses
     
-    def process_audio(self, waveform, sample_rate):
-        # if sample_rate != self.sample_rate:
-        #     resample_transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=self.sample_rate)
-        #     waveform = resample_transform(waveform)
-
+    def process_audio(self, waveform):
         input_values = self.processor(
             waveform.squeeze().numpy(),
             return_tensors="pt",
