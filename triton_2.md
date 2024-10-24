@@ -187,7 +187,6 @@ report_model_configs:
 # OpenVINO
 - tối ưu hóa ô hình chạy trên CPU
 - bọc mô hình bằng openvino runtime
-- pytorch -> onnx ->  openvino
 
 #  Polygraphy
 - giống như Perf Analyzer
@@ -195,5 +194,4 @@ report_model_configs:
 - Xem thông tin về nhiều loại mô hình khác nhau
 
 # model dali
-- ý tưởng: bỏ luôn tiền xử lý data vào model
-- vì data sau khi bị giải nén(như ảnh) thì sẽ nặng hơn data chưa giải nén 
+- ý tưởng: tiền xử lý dữ liệu bằng GPU
