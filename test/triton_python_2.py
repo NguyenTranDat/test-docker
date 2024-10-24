@@ -7,19 +7,15 @@ import os
 from pydub import AudioSegment
 import torch
 import pandas as pd
-from nvidia.dali import pipeline_def
-import nvidia.dali.fn as fn
-import nvidia.dali.types as types
 
 MODEL_NAME = 'wav2vec_py'
 TRITON_SERVER_URL = f'http://localhost:8000/v2/models/{MODEL_NAME}/infer'
 
-@pipeline_def
-def audio_decoder_pipe(file_paths):
-    encoded, _ = fn.readers.file(files=file_paths, file_filters="*.wav")
-    audio, sampling_rate = fn.decoders.audio(encoded, dtype=types.INT16)
-    audio = fn.audio_resample(audio, in_rate=sampling_rate, out_rate=16000)
-    return audio
+def read_audio_file(file_path):
+    audio = AudioSegment.from_wav(file_path)
+    audio = audio.set_frame_rate(16000)
+    samples = np.array(audio.get_array_of_samples(), dtype=np.float32) / 32768.0
+    return samples
 
 def infer(waveform):
     with httpclient.InferenceServerClient("localhost:8000") as client:
@@ -34,13 +30,12 @@ def infer(waveform):
         ]
 
         response = client.infer(MODEL_NAME, inputs, request_id='1', outputs=outputs)
-
         output_data = response.as_numpy("output")
+        return output_data
 
 if __name__ == '__main__':
     folder_data_path = '/home/trandat/Documents/vnpt/test-docker/data'
-    csv_output = "./results/triton_python.csv"
-    max_workers = 4
+    csv_output = "./results/triton_python_2.csv"
     processing_times = []
     file_counts = []
 
@@ -50,13 +45,11 @@ if __name__ == '__main__':
         start_time = time.time()
 
         threads = []
-
-        pipe = audio_decoder_pipe(batch_size=i, num_threads=16, device_id=0, file_paths=file_paths[:i])
-        pipe.build()
-        waveforms = pipe.run()
+        waveforms = []
 
         for j in range(i):
-            waveform = waveforms[0].at(j).flatten()
+            waveform = read_audio_file(file_paths[j])
+            waveform = waveform.flatten()
             thread = threading.Thread(target=infer, args=(np.array([waveform]),))
             threads.append(thread)
             thread.start()
@@ -71,7 +64,6 @@ if __name__ == '__main__':
         file_counts.append(i)
 
     df = pd.DataFrame({
-        "File Count": file_counts,
         "Time (seconds)": processing_times,
     })
     df.to_csv(csv_output, index=False)

@@ -26,7 +26,6 @@ class TritonPythonModel:
         print(len(requests))
         for request in requests:
             waveform = pb_utils.get_input_tensor_by_name(request, "waveform")
-
             waveform = waveform.as_numpy()
             waveform = torch.tensor(waveform, dtype=torch.float32)
 

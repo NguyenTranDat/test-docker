@@ -30,7 +30,3 @@ dynamic_batching {
   preferred_batch_size: [4, 8, 16]
   max_queue_delay_microseconds: 1000000
 }
-
-response_cache {
-  enable: true
-}
