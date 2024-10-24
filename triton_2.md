@@ -194,5 +194,4 @@ report_model_configs:
 - Xem thông tin về nhiều loại mô hình khác nhau
 
 # model dali
-- ý tưởng: bỏ luôn tiền xử lý data vào model
-- vì data sau khi bị giải nén(như ảnh) thì sẽ nặng hơn data chưa giải nén 
+- ý tưởng: tiền xử lý dữ liệu bằng GPU
