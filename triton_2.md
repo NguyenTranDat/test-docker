@@ -187,7 +187,6 @@ report_model_configs:
 # OpenVINO
 - tối ưu hóa ô hình chạy trên CPU
 - bọc mô hình bằng openvino runtime
-- pytorch -> onnx ->  openvino
 
 #  Polygraphy
 - giống như Perf Analyzer
