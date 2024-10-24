@@ -1,30 +1,46 @@
-model_repository: "models/"
+model_repository: 'models/'
 
-profile_models: 
+triton_launch_mode: "docker"
+run_config_search_disable: true
+
+profile_models:
   wav2vec_py:
-    perf_analyzer_flags:
-      percentile: 95
-      protocol: http 
     parameters:
-      batch_sizes:
-        start: 4
-        stop: 9
       concurrency:
-        - 2
-        - 4
-        - 8
+        start: 1
+        stop: 8
+        step: 1
+      batch_sizes: 1, 2, 4, 8
+
+    model_config_parameters:
+      max_batch_size: 16
+      dynamic_batching:
+        max_queue_delay_microseconds: [2000000, 3000000]
+      instance_group:
+        - kind: KIND_GPU
+          count: 1
+
+objectives:
+  - perf_latency_p99
+  - perf_throughput
+
+perf_analyzer_flags:
+  shape:
+    - "waveform:32000"
+    - "sample_rate:1"
+
+client_protocol: http
+
+triton_docker_image: "test"
+
+gpus: "all"
+
+run_config_search_mode: "brute"
+
+always_report_gpu_metrics: true
 
 triton_server_flags:
   strict_model_config: False
   log_verbose: True
 
-always_report_gpu_metrics: True
-
-report_model_configs:
-  model_config_default:
-    plots:
-      throughput_v_latency:
-        title: "Throughput vs Latency"
-        x_axis: perf_latency_p99
-        y_axis: perf_throughput
-        monotonic: True
+override_output_model_repository: true

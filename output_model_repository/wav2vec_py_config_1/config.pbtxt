@@ -1,0 +1,34 @@
+name: "wav2vec_py"
+max_batch_size: 16
+input {
+  name: "waveform"
+  data_type: TYPE_FP32
+  dims: -1
+  allow_ragged_batch: true
+}
+input {
+  name: "sample_rate"
+  data_type: TYPE_FP32
+  dims: -1
+  allow_ragged_batch: true
+}
+output {
+  name: "output"
+  data_type: TYPE_FP32
+  dims: 49
+  dims: 768
+}
+instance_group {
+  count: 1
+  kind: KIND_GPU
+}
+dynamic_batching {
+  preferred_batch_size: 4
+  preferred_batch_size: 8
+  preferred_batch_size: 16
+  max_queue_delay_microseconds: 3000000
+}
+backend: "python"
+response_cache {
+  enable: true
+}
